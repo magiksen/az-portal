@@ -1,5 +1,6 @@
 @extends('admin.admin_master')
 @section('admin')
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
     <div class="page-content">
         <div class="container-fluid">
@@ -44,7 +45,7 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label"> </label>
                                 <div class="col-sm-10">
-                                    <img class="rounded avatar-lg" src="{{ asset('backend/assets/images/small/img-5.jpg') }}" alt="Card image cap">
+                                    <img id="showImage" class="rounded avatar-lg" src="{{ asset('backend/assets/images/small/img-5.jpg') }}" alt="Card image cap">
                                 </div>
                             </div>
                             <!-- end row -->
@@ -55,5 +56,18 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#profile_image').change(function (e) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#showImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            });
+        });
+    </script>
+
 @endsection
 
